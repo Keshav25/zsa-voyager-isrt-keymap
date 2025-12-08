@@ -22,28 +22,22 @@ enum tap_dance_codes {
   DANCE_0,
 };
 
-#define DUAL_FUNC_0 LT(5, KC_Y)
-#define DUAL_FUNC_1 LT(5, KC_P)
-#define DUAL_FUNC_2 LT(4, KC_9)
-#define DUAL_FUNC_3 LT(10, KC_Q)
-#define DUAL_FUNC_4 LT(7, KC_E)
-#define DUAL_FUNC_5 LT(7, KC_8)
-#define DUAL_FUNC_6 LT(5, KC_F5)
-#define DUAL_FUNC_7 LT(1, KC_9)
-#define DUAL_FUNC_8 LT(13, KC_F16)
-#define DUAL_FUNC_9 LT(1, KC_O)
-#define DUAL_FUNC_10 LT(2, KC_L)
-#define DUAL_FUNC_11 LT(2, KC_F11)
-#define DUAL_FUNC_12 LT(7, KC_N)
-#define DUAL_FUNC_13 LT(3, KC_F2)
-#define DUAL_FUNC_14 LT(15, KC_F20)
-#define DUAL_FUNC_15 LT(9, KC_F24)
-#define DUAL_FUNC_16 LT(1, KC_T)
-#define DUAL_FUNC_17 LT(4, KC_F11)
-#define DUAL_FUNC_18 LT(1, KC_F7)
-#define DUAL_FUNC_19 LT(3, KC_C)
-#define DUAL_FUNC_20 LT(13, KC_U)
-#define DUAL_FUNC_21 LT(8, KC_F14)
+#define DUAL_FUNC_0 LT(13, KC_3)
+#define DUAL_FUNC_1 LT(7, KC_F1)
+#define DUAL_FUNC_2 LT(7, KC_F9)
+#define DUAL_FUNC_3 LT(9, KC_F19)
+#define DUAL_FUNC_4 LT(15, KC_F3)
+#define DUAL_FUNC_5 LT(15, KC_F7)
+#define DUAL_FUNC_6 LT(13, KC_V)
+#define DUAL_FUNC_7 LT(8, KC_F4)
+#define DUAL_FUNC_8 LT(4, KC_3)
+#define DUAL_FUNC_9 LT(12, KC_0)
+#define DUAL_FUNC_10 LT(15, KC_X)
+#define DUAL_FUNC_11 LT(3, KC_F22)
+#define DUAL_FUNC_12 LT(9, KC_T)
+#define DUAL_FUNC_13 LT(2, KC_N)
+#define DUAL_FUNC_14 LT(10, KC_1)
+#define DUAL_FUNC_15 LT(13, KC_F10)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -97,9 +91,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [7] = LAYOUT_voyager(
     KC_F12,         KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                                          KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,         
-    KC_TRANSPARENT, KC_BSLS,        KC_Q,           KC_W,           KC_E,           KC_R,                                           KC_T,           DUAL_FUNC_15,   DUAL_FUNC_16,   DUAL_FUNC_17,   KC_O,           KC_P,           
-    DUAL_FUNC_13,   KC_ENTER,       KC_A,           KC_S,           KC_D,           KC_F,                                           KC_G,           DUAL_FUNC_18,   DUAL_FUNC_19,   DUAL_FUNC_20,   DUAL_FUNC_21,   KC_SCLN,        
-    KC_TRANSPARENT, MT(MOD_RSFT, KC_MS_BTN3),MT(MOD_RSFT, KC_Z),DUAL_FUNC_14,   KC_SPACE,       NAVIGATOR_AIM,                                  KC_B,           KC_N,           KC_M,           KC_COMMA,       KC_DOT,         KC_SLASH,       
+    KC_TRANSPARENT, KC_BSLS,        KC_Q,           KC_W,           KC_E,           KC_R,                                           KC_T,           KC_MS_BTN1,     KC_MS_BTN2,     KC_MS_BTN3,     TOGGLE_SCROLL,  KC_P,           
+    DUAL_FUNC_13,   KC_ENTER,       KC_A,           KC_S,           KC_D,           KC_F,                                           KC_G,           KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_UP,       KC_MS_RIGHT,    KC_SCLN,        
+    KC_TRANSPARENT, MT(MOD_RSFT, KC_MS_BTN3),MT(MOD_RSFT, KC_Z),DUAL_FUNC_14,   NAVIGATOR_AIM,  DUAL_FUNC_15,                                   KC_B,           NAVIGATOR_INC_CPI,NAVIGATOR_DEC_CPI,DRAG_SCROLL,    NAVIGATOR_TURBO,KC_SLASH,       
                                                     KC_MS_BTN1,     DRAG_SCROLL,                                    DRAG_SCROLL,    NAVIGATOR_AIM
   ),
 };
@@ -558,105 +552,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case DUAL_FUNC_15:
       if (record->tap.count > 0) {
         if (record->event.pressed) {
-          register_code16(KC_Y);
+          register_code16(KC_SPACE);
         } else {
-          unregister_code16(KC_Y);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_MS_BTN1);
-        } else {
-          unregister_code16(KC_MS_BTN1);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_16:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_U);
-        } else {
-          unregister_code16(KC_U);
+          unregister_code16(KC_SPACE);
         }
       } else {
         if (record->event.pressed) {
           register_code16(KC_MS_BTN2);
         } else {
           unregister_code16(KC_MS_BTN2);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_17:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_I);
-        } else {
-          unregister_code16(KC_I);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_MS_BTN3);
-        } else {
-          unregister_code16(KC_MS_BTN3);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_18:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_H);
-        } else {
-          unregister_code16(KC_H);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_MS_LEFT);
-        } else {
-          unregister_code16(KC_MS_LEFT);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_19:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_J);
-        } else {
-          unregister_code16(KC_J);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_MS_DOWN);
-        } else {
-          unregister_code16(KC_MS_DOWN);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_20:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_K);
-        } else {
-          unregister_code16(KC_K);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_MS_UP);
-        } else {
-          unregister_code16(KC_MS_UP);
-        }  
-      }  
-      return false;
-    case DUAL_FUNC_21:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          register_code16(KC_L);
-        } else {
-          unregister_code16(KC_L);
-        }
-      } else {
-        if (record->event.pressed) {
-          register_code16(KC_MS_RIGHT);
-        } else {
-          unregister_code16(KC_MS_RIGHT);
         }  
       }  
       return false;
